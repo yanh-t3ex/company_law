@@ -3,615 +3,771 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>上市櫃公司法規實務整理</title>
+    <title>公開發行與上市櫃公司法規實務整理</title>
+    <!-- 引入 Google Fonts: Zen Maru Gothic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================
-           A4 規格與基礎重置 (Print & Screen Base)
+           1. 雅緻人文 Design System (Zen Maru Theme)
            ========================================== */
-        @page {
-            size: A4 portrait;
-            margin: 15mm 12mm;
+        :root {
+            --font-family-base: "Zen Maru Gothic", -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+            --primary-dark: #2c3e50;
+            --primary-blue: #3b628d;
+            --bg-main: #faf9f6; /* 人文柔和米白 */
+            --bg-card: #ffffff;
+            --text-main: #34495e;
+            --text-muted: #7f8c8d;
+            --border-color: #e8e6e1;
+            --border-hover: #d2d0c9;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
+            --shadow-md: 0 8px 20px -4px rgba(0,0,0,0.06);
+            --shadow-lg: 0 16px 32px -6px rgba(0,0,0,0.08);
+
+            /* 5大項目和諧雅緻主題色 (莫蘭迪和諧色系) */
+            /* 全部內容：經典深青色 (與公司法藍色明確區隔) */
+            --color-all: #1a535c;
+            
+            /* 公司法：經典莫蘭迪藍 */
+            --color-company: #3b5280;
+            --theme-company: linear-gradient(135deg, #3b5280, #4a6496);
+
+            /* 證券交易法：典雅鼠尾草綠 */
+            --color-sec: #3d7a63;
+            --theme-sec: linear-gradient(135deg, #3d7a63, #4c9479);
+
+            /* 四大處理準則：柔和莫蘭迪暖陶棕 */
+            --color-rules: #8c6d53;
+            --theme-rules: linear-gradient(135deg, #8c6d53, #a07d61);
+
+            /* 重大訊息處理：典雅莫蘭迪煙燻紫 (完全跳脫藍灰，明確區隔) */
+            --color-mops: #5a4e69;
+            --theme-mops: linear-gradient(135deg, #5a4e69, #6d5f7e);
+
+            /* 對照總表：暖石墨冷灰 */
+            --color-table: #58656d;
+            --theme-table: linear-gradient(135deg, #58656d, #6a7881);
+
+            /* 精緻紅字強調標籤 */
+            --text-important: #be123c;
+            --bg-important-light: #fff1f2;
+            --highlight-yellow: #fef08a;
         }
-        
+
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
-        :root {
-            /* 語意化色彩系統 */
-            --primary-dark: #0f172a;
-            --primary-blue: #0284c7;
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-main: #334155;
-            --text-muted: #64748b;
-            --border-color: #cbd5e1;
-            
-            /* 分類主題色 */
-            --theme-company: #1e3a8a;      /* 深藍：公司法 */
-            --theme-sec: #065f46;          /* 墨綠：證交法 */
-            --theme-rules: #9a3412;        /* 磚紅：四大處理辦法 */
-            --theme-mops: #581c87;         /* 紫色：重大訊息 */
-            --theme-table: #334155;        /* 鐵灰：對照總表 */
-
-            /* 強調色 */
-            --text-important: #dc2626;     /* 紅字強調 */
-        }
-
         html {
-            scroll-behavior: smooth; /* 平滑滾動 */
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            font-family: var(--font-family-base);
+            font-weight: 400;
             color: var(--text-main);
             background-color: var(--bg-main);
             margin: 0;
-            padding: 24px;
-            font-size: 11pt;
-            line-height: 1.6;
+            padding: 0;
+            font-size: 15.5px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 連結樣式優化 */
         a {
             color: var(--primary-blue);
             text-decoration: none;
-            transition: color 0.2s ease, text-decoration 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         a:hover {
-            color: #0369a1;
+            color: #254366;
             text-decoration: underline;
         }
 
         .container {
-            max-width: 1050px;
+            max-width: 1120px;
             margin: 0 auto;
+            padding: 24px 16px;
         }
 
-        /* 重點紅字樣式 */
+        /* 輕量紅字強調標籤 */
         .text-important {
             color: var(--text-important);
+            font-weight: 500;
+            background: var(--bg-important-light);
+            padding: 0px 5px;
+            border-radius: 4px;
+            margin: 0 2px;
+            display: inline;
+        }
+
+        mark.search-highlight {
+            background-color: var(--highlight-yellow);
+            color: #000;
+            padding: 0 2px;
+            border-radius: 3px;
             font-weight: 700;
         }
 
         /* ==========================================
-           頁籤選單機制 (Tabs Control)
+           2. Integrated Sticky Header
            ========================================== */
-        .tab-nav {
+        .sticky-header-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 249, 246, 0.94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 14px 16px 0 16px;
             display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            background: #e2e8f0;
-            padding: 6px;
-            border-radius: 8px;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .header-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
-        .tab-btn {
+        /* 標題字體稍微加大至 1.4rem */
+        .brand-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-title svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-blue);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .brand-title:hover svg {
+            transform: rotate(15deg) scale(1.15);
+        }
+
+        .search-box-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             flex: 1;
-            min-width: 140px;
-            padding: 10px 14px;
+            max-width: 380px;
+            justify-content: flex-end;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 34px 8px 38px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 13.5px;
+            font-family: var(--font-family-base);
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f1efea;
+        }
+
+        .search-input:focus {
+            background: #ffffff;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 98, 141, 0.12);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            fill: var(--text-muted);
+            pointer-events: none;
+            transition: fill 0.25s ease;
+        }
+
+        .search-input:focus ~ .search-icon {
+            fill: var(--primary-blue);
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
             border: none;
             background: transparent;
             color: var(--text-muted);
-            font-size: 10.5pt;
-            font-weight: 600;
-            border-radius: 6px;
             cursor: pointer;
+            font-size: 13px;
+            display: none;
+            padding: 2px 6px;
+            border-radius: 50%;
             transition: all 0.2s ease;
+        }
+
+        .clear-search:hover {
+            color: var(--primary-dark);
+            background: #e2e8f0;
+        }
+
+        .search-count-badge {
+            font-size: 0.85rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* 自然極簡導覽頁籤 */
+        .tab-nav {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding-bottom: 2px;
+        }
+
+        .tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 6px 14px 10px 14px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: var(--font-family-base);
+            cursor: pointer;
+            transition: all 0.25s ease;
             text-align: center;
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 3px solid transparent;
         }
 
         .tab-btn:hover {
-            background-color: rgba(255, 255, 255, 0.6);
             color: var(--primary-dark);
         }
 
-        .tab-btn.active {
-            background-color: var(--bg-card);
-            color: var(--primary-dark);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        /* 動態匹配主題色的頁籤激活樣式 */
+        .tab-btn.active[data-target="tab-all"] {
+            color: var(--color-all);
+            border-bottom-color: var(--color-all);
+            font-weight: 700;
         }
 
-        /* 控制分頁區塊顯隱 */
+        .tab-btn.active[data-target="tab-company"] {
+            color: var(--color-company);
+            border-bottom-color: var(--color-company);
+            font-weight: 700;
+        }
+
+        .tab-btn.active[data-target="tab-sec"] {
+            color: var(--color-sec);
+            border-bottom-color: var(--color-sec);
+            font-weight: 700;
+        }
+
+        .tab-btn.active[data-target="tab-rules"] {
+            color: var(--color-rules);
+            border-bottom-color: var(--color-rules);
+            font-weight: 700;
+        }
+
+        .tab-btn.active[data-target="tab-mops"] {
+            color: var(--color-mops);
+            border-bottom-color: var(--color-mops);
+            font-weight: 700;
+        }
+
+        .tab-btn.active[data-target="tab-table"] {
+            color: var(--color-table);
+            border-bottom-color: var(--color-table);
+            font-weight: 700;
+        }
+
         .tab-content {
             display: none;
         }
+
         .tab-content.active {
             display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ==========================================
-           頁眉與中繼資訊 (Header & Meta)
+           3. 法規卡片與內文 (Cards & Section)
            ========================================== */
-        .header-container {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #ffffff;
-            border-radius: 8px;
-            padding: 22px 26px;
-            margin-bottom: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-
-        .header-title {
-            font-size: 17pt;
+        .section-header {
+            font-size: 1.1rem;
             font-weight: 700;
-            margin: 0 0 6px 0;
-            letter-spacing: 0.5px;
-        }
-
-        .header-subtitle {
-            font-size: 11pt;
-            color: #94a3b8;
-            margin: 0;
-        }
-
-        .meta-bar {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px 18px;
-            margin-bottom: 20px;
-            font-size: 10pt;
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .meta-item strong {
-            color: var(--primary-dark);
-        }
-
-        /* ==========================================
-           卡片與色彩標籤 (Cards & Classification)
-           ========================================== */
-        .section-title {
-            font-size: 13.5pt;
-            font-weight: 700;
-            padding: 10px 14px;
-            border-radius: 6px 6px 0 0;
+            padding: 13px 22px;
+            border-radius: 10px 10px 0 0;
             color: #ffffff;
             margin: 24px 0 0 0;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            letter-spacing: 0.4px;
         }
 
-        /* 各大主題標準色彩定義 */
-        .sec-company { background-color: var(--theme-company); }
-        .sec-sec { background-color: var(--theme-sec); }
-        .sec-rules { background-color: var(--theme-rules); }
-        .sec-mops { background-color: var(--theme-mops); }
-        .sec-table { background-color: var(--theme-table); }
+        .sec-company { background: var(--theme-company); }
+        .sec-sec { background: var(--theme-sec); }
+        .sec-rules { background: var(--theme-rules); }
+        .sec-mops { background: var(--theme-mops); }
+        .sec-table { background: var(--theme-table); }
 
         .card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-top: none;
-            border-radius: 0 0 8px 8px;
-            padding: 18px 22px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border-radius: 0 0 10px 10px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-hover);
         }
 
         h3 {
-            font-size: 11.5pt;
+            font-size: 0.98rem;
             color: var(--primary-dark);
-            margin: 16px 0 10px 0;
-            padding-bottom: 4px;
+            margin: 22px 0 14px 0;
+            padding-bottom: 8px;
             border-bottom: 1px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
         }
+
         h3:first-child {
             margin-top: 0;
         }
 
-        p, ul {
-            margin: 0 0 8px 0;
-        }
-
         ul {
+            margin: 0 0 14px 0;
             padding-left: 20px;
         }
 
         li {
-            margin-bottom: 6px;
+            margin-bottom: 12px;
+            line-height: 1.75;
+            transition: background 0.2s ease, transform 0.2s ease;
+            border-radius: 6px;
+            padding: 2px 4px;
         }
 
-        /* Badges 標籤 */
+        li.searchable-item:hover {
+            background-color: rgba(241, 245, 249, 0.7);
+            transform: translateX(3px);
+        }
+
         .badge {
             display: inline-block;
-            font-size: 8.5pt;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 500;
             padding: 2px 8px;
-            border-radius: 4px;
+            border-radius: 5px;
             margin-right: 6px;
             color: #ffffff;
+            vertical-align: middle;
+            transition: transform 0.2s ease;
         }
+
+        .badge:hover {
+            transform: scale(1.05);
+        }
+
         .badge a {
             color: #ffffff;
-            text-decoration: none;
         }
-        .badge a:hover {
-            text-decoration: underline;
-        }
-        .bg-company { background-color: #2563eb; }
-        .bg-sec { background-color: #059669; }
-        .bg-rules { background-color: #ea580c; } /* 磚紅色 */
-        .bg-mops { background-color: #7c3aed; }
-        .bg-table { background-color: var(--theme-table); } /* 鐵灰色對照總表專用標籤 */
+
+        .bg-company { background-color: var(--color-company); }
+        .bg-sec { background-color: var(--color-sec); }
+        .bg-rules { background-color: var(--color-rules); }
+        .bg-mops { background-color: var(--color-mops); }
+        .bg-table { background-color: var(--color-table); }
 
         .highlight-box {
-            background-color: #f1f5f9;
+            background-color: #faf9f6;
             border-left: 4px solid var(--primary-blue);
-            padding: 10px 14px;
-            margin: 10px 0;
-            font-size: 10.5pt;
-            border-radius: 0 4px 4px 0;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 18px;
+            margin: 16px 0;
+            font-size: 0.94rem;
+            border-radius: 0 8px 8px 0;
+            color: #475569;
         }
 
         /* ==========================================
-           流程圖 UI (Flow Components)
+           4. 流程圖 UI (Flowchart)
            ========================================== */
         .flow-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
             background: #f8fafc;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 14px;
-            margin: 14px 0;
-            gap: 10px;
-            overflow-x: auto;
+            border-radius: 10px;
+            padding: 18px;
+            margin: 18px 0;
         }
 
         .flow-step {
-            flex: 1;
             background: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 12px;
             text-align: center;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            min-width: 130px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s ease;
+        }
+
+        .flow-step:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-md);
         }
 
         .flow-step-title {
             font-weight: 700;
             color: var(--primary-dark);
-            font-size: 10pt;
+            font-size: 0.9rem;
             margin-bottom: 4px;
         }
 
         .flow-step-desc {
-            font-size: 9.5pt;
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
 
-        .flow-arrow {
-            font-size: 14pt;
-            color: var(--primary-blue);
-            font-weight: bold;
+        /* ==========================================
+           5. 表格 (Responsive Table)
+           ========================================== */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 18px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
 
-        /* ==========================================
-           表格排版 (Table Styling)
-           ========================================== */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 14px 0;
-            font-size: 10pt;
+            font-size: 0.9rem;
             background-color: var(--bg-card);
+            min-width: 600px;
         }
 
         th {
-            background-color: var(--primary-dark);
+            background-color: #2c3e50;
             color: #ffffff;
-            font-weight: 600;
+            font-weight: 500;
             text-align: left;
-            padding: 10px 12px;
-            border: 1px solid var(--primary-dark);
+            padding: 12px 16px;
+            border: 1px solid #34495e;
+            white-space: nowrap;
         }
 
         td {
-            padding: 10px 12px;
+            padding: 12px 16px;
             border: 1px solid var(--border-color);
             vertical-align: top;
         }
 
         tr:nth-child(even) td {
-            background-color: #f8fafc;
+            background-color: #faf9f6;
         }
 
-        .footer-text {
-            font-size: 9pt;
-            color: var(--text-muted);
-            text-align: center;
-            margin-top: 24px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border-color);
+        tr:hover td {
+            background-color: #f1f5f9;
         }
 
         /* ==========================================
-           回到頂端按鈕 (Back to Top Button)
+           6. 浮動按鈕與 Footer
            ========================================== */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 48px;
-            height: 48px;
+            bottom: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
             background-color: var(--primary-dark);
             color: #ffffff;
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-lg);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 99;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .back-to-top.show {
-            opacity: 0.9;
+            opacity: 0.92;
             visibility: visible;
         }
 
         .back-to-top:hover {
             opacity: 1;
             background-color: var(--primary-blue);
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.05);
         }
 
         .back-to-top svg {
-            width: 22px;
-            height: 22px;
+            width: 18px;
+            height: 18px;
             fill: currentColor;
         }
 
-        /* ==========================================
-           列印最佳化 (Print Media Queries)
-           ========================================== */
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px dashed var(--border-color);
+            color: var(--text-muted);
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        /* 列印最佳化 */
         @media print {
-            body {
-                background-color: #ffffff;
-                padding: 0;
-                font-size: 9.5pt;
-                line-height: 1.4;
-            }
-
-            .container {
-                max-width: 100%;
-            }
-
-            .tab-nav, .back-to-top {
-                display: none !important;
-            }
-
-            .tab-content {
-                display: block !important;
-                page-break-after: auto;
-            }
-
-            .header-container {
-                padding: 12px 16px;
-                margin-bottom: 10px;
-                border-radius: 0;
-            }
-
-            .meta-bar {
-                padding: 6px 10px;
-                margin-bottom: 12px;
-                border-radius: 0;
-            }
-
-            .section-title {
-                font-size: 11.5pt;
-                padding: 6px 10px;
-                margin-top: 12px;
-                page-break-after: avoid;
-            }
-
-            .card {
-                padding: 10px 12px;
-                margin-bottom: 12px;
-                border-radius: 0;
-                box-shadow: none;
-                page-break-inside: avoid;
-            }
-
-            h3 {
-                font-size: 10pt;
-                margin: 8px 0 4px 0;
-                page-break-after: avoid;
-            }
-
-            th, td {
-                padding: 6px 8px;
-            }
-
-            .highlight-box {
-                padding: 6px 10px;
-                margin: 6px 0;
-            }
-
-            .footer-text {
-                margin-top: 12px;
-                padding-top: 6px;
-            }
+            body { background-color: #ffffff; padding: 0; font-size: 9.5pt; }
+            .sticky-header-wrapper, .back-to-top { display: none !important; }
+            .tab-content { display: block !important; }
+            .container { max-width: 100%; padding: 0; }
+            .card { box-shadow: none; border-radius: 0; padding: 12px; page-break-inside: avoid; }
+            .section-header { page-break-after: avoid; padding: 8px 12px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- Header -->
+    <!-- 自然整合 Sticky Header -->
+    <div class="sticky-header-wrapper">
         <div class="header-container">
-            <div class="header-title">公開發行與上市櫃公司法規體系暨核心子法實務總整理</div>
-            <div class="header-subtitle">涵蓋公司法、證交法、四大處理準則與重大訊息完整處置規範</div>
+            <div class="header-top-row">
+                <div class="brand-title">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    公開發行與上市櫃公司法規實務整理
+                </div>
+                
+                <div class="search-box-wrapper">
+                    <span id="searchResultCount" class="search-count-badge"></span>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" class="search-input" placeholder="搜尋條號、關鍵字（如：獨立董事、20%）..." oninput="handleSearch()">
+                        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        <button id="clearSearchBtn" class="clear-search" onclick="clearSearch()">✕</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 極簡自然頁籤 -->
+            <div class="tab-nav" id="tabNav">
+                <button class="tab-btn active" data-target="tab-all" onclick="switchTab('tab-all', event)">全部內容</button>
+                <button class="tab-btn" data-target="tab-company" onclick="switchTab('tab-company', event)">公司法</button>
+                <button class="tab-btn" data-target="tab-sec" onclick="switchTab('tab-sec', event)">證券交易法</button>
+                <button class="tab-btn" data-target="tab-rules" onclick="switchTab('tab-rules', event)">四大處理準則</button>
+                <button class="tab-btn" data-target="tab-mops" onclick="switchTab('tab-mops', event)">重大訊息處理</button>
+                <button class="tab-btn" data-target="tab-table" onclick="switchTab('tab-table', event)">對照總表</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- 無搜尋結果提示 -->
+        <div id="noResults" class="no-results">
+            未找到與「<span id="searchQueryText"></span>」相符的法規內容，請嘗試更換關鍵字。
         </div>
 
-        <!-- Meta Info -->
-        <div class="meta-bar">
-            <span class="meta-item"><strong>主管機關：</strong> 金管會證期局 / 經濟部 / 臺灣證券交易所 / 櫃買中心</span>
-        </div>
-
-        <!-- Tab Controls (自動於列印時隱藏) -->
-        <div class="tab-nav">
-            <button class="tab-btn active" onclick="switchTab('tab-all')">全部內容</button>
-            <button class="tab-btn" onclick="switchTab('tab-company')">公司法</button>
-            <button class="tab-btn" onclick="switchTab('tab-sec')">證券交易法</button>
-            <button class="tab-btn" onclick="switchTab('tab-rules')">四大處理準則</button>
-            <button class="tab-btn" onclick="switchTab('tab-mops')">重大訊息處理</button>
-            <button class="tab-btn" onclick="switchTab('tab-table')">對照總表</button>
-        </div>
-
-        <!-- Main Contents Area -->
+        <!-- 核心內容區塊 -->
         <div id="main-content">
 
             <!-- 1. 公司法 -->
-            <div id="tab-company" class="tab-content active">
-                <div class="section-title sec-company"><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001" target="_blank" style="color: #ffffff;">公司法</a>（公開發行公司相關規定條文彙整）</div>
+            <div id="tab-company" class="tab-content active search-section">
+                <div class="section-header sec-company">
+                    <span><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001" target="_blank" style="color: #ffffff;">公司法</a>（公開發行公司相關規定條文彙整）</span>
+                </div>
                 <div class="card">
                     <h3>一、 股東會召集、提案與表決機制</h3>
                     <ul>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=172" target="_blank">公司法 §172</a></span><strong>召集通知期限與列舉事項：</strong> 股東常會應於 <span class="text-important">30 日前</span>通知各股東（非公發 20 日）；臨時會應於 <span class="text-important">15 日前</span>通知（非公發 10 日）。選任或解任董事、監察人、變更章程、減資、申請停止公開發行、公司解散、併購、分割或第 <a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=185" target="_blank">185 條第 1 項</a>各款事項，應在召集事由中列舉並說明其主要內容，<span class="text-important">不得以臨時動議提出</span>。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=172-1" target="_blank">公司法 §172-1</a></span><strong>股東提案權實務：</strong> 持有已發行股份總數 <span class="text-important">1% 以上</span>股份之股東，得向公司提出股東常會議案，以一項為限，提案字數不得超過 300 字。公司應於股東常會開會前之停止過戶日前，公告受理股東之提案、書面或電子受理方式、受理處所及受理期間，其受理期間<span class="text-important">不得少於 10 日</span>。董事會審查除法定退回事由外，應列入議案。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=177-1" target="_blank">公司法 §177-1</a></span><strong>強制電子投票機制：</strong> 公開發行股票之公司召集股東會時，<span class="text-important">應將電子方式列為表決權行使管道之一</span>。股東以電子方式行使表決權者，視為親自出席股東會。但就該次股東會之臨時動議及原議案之修正，視為棄權。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=177-2" target="_blank">公司法 §177-2</a></span><strong>電子投票與委託書衝突處置：</strong> 股東以電子方式行使表決權後，又以委託書委託代理人出席股東會者，<span class="text-important">以委託代理人出席者為準</span>。股東以電子方式行使表決權後，欲親自出席股東會者，應於股東會開會 <span class="text-important">2 日前</span>，以與行使表決權相同之方式撤銷表決權行使；逾期撤銷者，以電子方式行使之表決權為準。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=173-1" target="_blank">公司法 §173-1</a></span><strong>過半數大股東自行召集權：</strong> 繼續持股 <span class="text-important">3 個月以上</span>，持有已發行股份總數 <span class="text-important">過半數（>50%）</span> 股份之股東，得自行召集股東臨時會，無須先經請求董事會或主管機關許可。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=172" target="_blank">公司法 §172</a></span><strong>召集通知期限與列舉事項：</strong> 股東常會應於 <span class="text-important">30 日前</span>通知各股東（非公發 20 日）；臨時會應於 <span class="text-important">15 日前</span>通知（非公發 10 日）。選任或解任董事、監察人、變更章程、減資、申請停止公開發行、公司解散、併購、分割或第 <a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=185" target="_blank">185 條第 1 項</a>各款事項，應在召集事由中列舉並說明其主要內容，<span class="text-important">不得以臨時動議提出</span>。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=172-1" target="_blank">公司法 §172-1</a></span><strong>股東提案權實務：</strong> 持有已發行股份總數 <span class="text-important">1% 以上</span>股份之股東，得向公司提出股東常會議案，以一項為限，提案字數不得超過 300 字。公司應於股東常會開會前之停止過戶日前，公告受理股東之提案、書面或電子受理方式、受理處所及受理期間，其受理期間<span class="text-important">不得少於 10 日</span>。董事會審查除法定退回事由外，應列入議案。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=177-1" target="_blank">公司法 §177-1</a></span><strong>強制電子投票機制：</strong> 公開發行股票之公司召集股東會時，<span class="text-important">應將電子方式列為表決權行使管道之一</span>。股東以電子方式行使表決權者，視為親自出席股東會。但就該次股東會之臨時動議及原議案之修正，視為棄權。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=177-2" target="_blank">公司法 §177-2</a></span><strong>電子投票與委託書衝突處置：</strong> 股東以電子方式行使表決權後，又以委託書委託代理人出席股東會者，<span class="text-important">以委託代理人出席者為準</span>。股東以電子方式行使表決權後，欲親自出席股東會者，應於股東會開會 <span class="text-important">2 日前</span>，以與行使表決權相同之方式撤銷表決權行使；逾期撤銷者，以電子方式行使之表決權為準。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=173-1" target="_blank">公司法 §173-1</a></span><strong>過半數大股東自行召集權：</strong> 繼續持股 <span class="text-important">3 個月以上</span>，持有已發行股份總數 <span class="text-important">過半數（>50%）</span> 股份之股東，得自行召集股東臨時會，無須先經請求董事會或主管機關許可。</li>
                     </ul>
 
                     <h3>二、 董事會運作、治理體制與選任制度</h3>
                     <ul>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=192-1" target="_blank">公司法 §192-1</a></span><strong>強制候選人提名制度：</strong> 公發公司董事選任採<span class="text-important">候選人提名制度</span>，載明於章程，股東應就董事候選人名單中選任之。公司應於股東會召集前公告受理提名之期間（不得少於 10 日）、應選名額及受理處所。董事會或其他召集權人召集股東會時，符合資格之提名名單均應列入董事候選人名單。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=204" target="_blank">公司法 §204</a></span><strong>董事會召集通知與開會手續：</strong> 董事會之召集，應載明事由於 <span class="text-important">7 日前</span>通知各董事及監察人。但有緊急情事時，得隨時召集之。召集通知經相對人同意者，得以電子方式為之。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=192" target="_blank">公司法 §192 IV</a> & <a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=192-1" target="_blank">§192-1</a></span><strong>獨立董事設置基礎：</strong> 公司得依章程規定設置獨立董事，公開發行公司應依證券交易法相關規定辦理。獨立董事與非獨立董事應一併進行選舉，分別計算當選名額。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=193-1" target="_blank">公司法 §193-1</a></span><strong>董事責任保險（D&O）：</strong> 公司得為董事於執行業務範圍內所生之賠償責任購買責任保險。公司為董事購買責任保險或續保後，應將其承保金額、承保範圍及保險費率等重要內容，<span class="text-important">提報最近一次董事會</span>。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=198" target="_blank">公司法 §198</a></span><strong>累積投票制：</strong> 股東會選任董事時，每一股份有與應選出董事人數相同之選舉權，得集中選舉一人，或分配選舉數人，由所得選票代表選舉權較多者當選。公司不得以章程排除累積投票制之適用。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=192-1" target="_blank">公司法 §192-1</a></span><strong>強制候選人提名制度：</strong> 公發公司董事選任採<span class="text-important">候選人提名制度</span>，載明於章程，股東應就董事候選人名單中選任之。公司應於股東會召集前公告受理提名之期間（不得少於 10 日）、應選名額及受理處所。董事會或其他召集權人召集股東會時，符合資格之提名名單均應列入董事候選人名單。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=204" target="_blank">公司法 §204</a></span><strong>董事會召集通知與開會手續：</strong> 董事會之召集，應載明事由於 <span class="text-important">7 日前</span>通知各董事及監察人。但有緊急情事時，得隨時召集之。召集通知經相對人同意者，得以電子方式為之。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=192" target="_blank">公司法 §192 IV</a> & <a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=192-1" target="_blank">§192-1</a></span><strong>獨立董事設置基礎：</strong> 公司得依章程規定設置獨立董事，公開發行公司應依證券交易法相關規定辦理。獨立董事與非獨立董事應一併進行選舉，分別計算當選名額。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=193-1" target="_blank">公司法 §193-1</a></span><strong>董事責任保險（D&O）：</strong> 公司得為董事於執行業務範圍內所生之賠償責任購買責任保險。公司為董事購買責任保險或續保後，應將其承保金額、承保範圍及保險費率等重要內容，<span class="text-important">提報最近一次董事會</span>。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=198" target="_blank">公司法 §198</a></span><strong>累積投票制：</strong> 股東會選任董事時，每一股份有與應選出董事人數相同之選舉權，得集中選舉一人，或分配選舉數人，由所得選票代表選舉權較多者當選。公司不得以章程排除累積投票制之適用。</li>
                     </ul>
 
                     <h3>三、 資本發行、股票無實體化與股務暫停登記</h3>
                     <ul>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=267" target="_blank">公司法 §267</a></span><strong>員工認購與發行新股公開提撥：</strong> 公司發行新股時，應保留 <span class="text-important">10% 至 15%</span> 之股份由公司員工承購。公開發行股票之公司，併應提撥發行新股總額之一定比例對外公開發行（除法令另有規定外，通常依<a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=28-1" target="_blank">證交法第 28-1 條</a>提撥 10% 辦理公開申購或競價拍賣）。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=161-2" target="_blank">公司法 §161-2</a></span><strong>股票強制無實體化發行：</strong> 公開發行股票之公司，其發行之股份<span class="text-important">應採無實體發行</span>，免印製股票，並應登錄於證券集中保管事業機構（集保結算所）。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=165" target="_blank">公司法 §165 III</a></span><strong>停止過戶期間規範：</strong> 股東名簿記載之變更，於股東常會開會前 <span class="text-important">60 日內</span>，股東臨時會開會前 <span class="text-important">30 日內</span>，或公司決定分派股息及紅利或其他利益之基準日前 <span class="text-important">5 日內</span>，不得為之。</li>
-                        <li><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=240" target="_blank">公司法 §240</a>、<a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=241" target="_blank">§241</a></span><strong>盈餘與公積撥充資本/發放現金：</strong> 公司章程得授權董事會以<span class="text-important">三分之二以上董事出席</span>及<span class="text-important">出席董事過半數之決議</span>，將應分派之股息紅利、法定盈餘公積或資本公積（超過票面金額發行股票所得溢額及受領贈與之所得）之全部或一部，以發放現金方式為之，並提報股東會。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=267" target="_blank">公司法 §267</a></span><strong>員工認購與發行新股公開提撥：</strong> 公司發行新股時，應保留 <span class="text-important">10% 至 15%</span> 之股份由公司員工承購。公開發行股票之公司，併應提撥發行新股總額之一定比例對外公開發行（除法令另有規定外，通常依<a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=28-1" target="_blank">證交法第 28-1 條</a>提撥 10% 辦理公開申購或競價拍賣）。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=161-2" target="_blank">公司法 §161-2</a></span><strong>股票強制無實體化發行：</strong> 公開發行股票之公司，其發行之股份<span class="text-important">應採無實體發行</span>，免印製股票，並應登錄於證券集中保管事業機構（集保結算所）。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=165" target="_blank">公司法 §165 III</a></span><strong>停止過戶期間規範：</strong> 股東名簿記載之變更，於股東常會開會前 <span class="text-important">60 日內</span>，股東臨時會開會前 <span class="text-important">30 日內</span>，或公司決定分派股息及紅利或其他利益之基準日前 <span class="text-important">5 日內</span>，不得為之。</li>
+                        <li class="searchable-item"><span class="badge bg-company"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=240" target="_blank">公司法 §240</a>、<a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=J0080001&flno=241" target="_blank">§241</a></span><strong>盈餘與公積撥充資本/發放現金：</strong> 公司章程得授權董事會以<span class="text-important">三分之二以上董事出席</span>及<span class="text-important">出席董事過半數之決議</span>，將應分派之股息紅利、法定盈餘公積或資本公積（超過票面金額發行股票所得溢額及受領贈與之所得）之全部或一部，以發放現金方式為之，並提報股東會。</li>
                     </ul>
                 </div>
             </div>
 
             <!-- 2. 證券交易法 -->
-            <div id="tab-sec" class="tab-content active">
-                <div class="section-title sec-sec"><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400001" target="_blank" style="color: #ffffff;">證券交易法</a>（公開發行公司核心條文全彙整）</div>
+            <div id="tab-sec" class="tab-content active search-section">
+                <div class="section-header sec-sec">
+                    <span><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400001" target="_blank" style="color: #ffffff;">證券交易法</a>（公開發行公司核心條文全彙整）</span>
+                </div>
                 <div class="card">
                     <h3>一、 發行管理與資訊公開制度</h3>
                     <ul>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=20" target="_blank">證交法 §20</a></span><strong>反詐欺條款與民事責任：</strong> 有價證券之募集、發行、私募或買賣，<span class="text-important">不得有虛偽、詐欺或其他足致他人誤信之行為</span>。發行人申報或公告之財務報告及其他相關業務文件，其內容不得有虛偽或隱匿之情事。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=20-1" target="_blank">證交法 §20-1</a></span><strong>財務報告不實之賠償責任：</strong> 發行人主要內容有虛偽或隱匿情事，對於善意取得、出賣或持有該有價證券之人因而所受之損害，發行人及其負責人、發行人之經理人、發行人在財務報告上簽章之專任人員、簽證會計師應負<span class="text-important">連帶賠償責任</span>。發行人以外之人能證明已盡相當之注意，且有正當理由可信其資料為真實者，不負賠償責任（過失責任與比例責任制）。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36" target="_blank">證交法 §36</a></span><strong>定期財務報告申報時效：</strong>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=20" target="_blank">證交法 §20</a></span><strong>反詐欺條款與民事責任：</strong> 有價證券之募集、發行、私募或買賣，<span class="text-important">不得有虛偽、詐欺或其他足致他人誤信之行為</span>。發行人申報或公告之財務報告及其他相關業務文件，其內容不得有虛偽或隱匿之情事。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=20-1" target="_blank">證交法 §20-1</a></span><strong>財務報告不實之賠償責任：</strong> 發行人主要內容有虛偽或隱匿情事，對於善意取得、出賣或持有該有價證券之人因而所受之損害，發行人及其負責人、發行人之經理人、發行人在財務報告上簽章之專任人員、簽證會計師應負<span class="text-important">連帶賠償責任</span>。發行人以外之人能證明已盡相當之注意，且有正當理由可信其資料為真實者，不負賠償責任（過失責任與比例責任制）。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36" target="_blank">證交法 §36</a></span><strong>定期財務報告申報時效：</strong>
                             <ul>
                                 <li><strong>年度財務報告：</strong>每會計年度終結後 <span class="text-important">3 個月內</span>（上市櫃公司指定門檻為 <span class="text-important">75 天內</span>）經會計師查核簽證、董事會通過及監察人承認（或審計委員會同意）後公告申報。</li>
                                 <li><strong>第一、二、三季財務報告：</strong>每季會計年度終結後 <span class="text-important">45 天內</span>經會計師核閱及董事會通過後公告申報。</li>
                                 <li><strong>每月營業額：</strong>每月 <span class="text-important">10 日前</span>公告並申報上月份營運情形（營收）。</li>
                             </ul>
                         </li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span><strong>核心管理子法之授權基礎：</strong> 公發公司財務、業務、資產處分、資金貸與、背書保證、內部控制及股務處理等監督管理事項，授權金管會訂定相應之子法（即四大處理準則及股務準則）。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span><strong>核心管理子法之授權基礎：</strong> 公發公司財務、業務、資產處分、資金貸與、背書保證、內部控制及股務處理等監督管理事項，授權金管會訂定相應之子法（即四大處理準則及股務準則）。</li>
                     </ul>
 
                     <h3>二、 公司治理、審計與薪資報酬委員會</h3>
                     <ul>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-1" target="_blank">證交法 §14-1</a></span><strong>內部控制制度實施：</strong> 公發公司應建立內部控制制度。主管機管得視公司規模、業務性質及其他必要情況，命令公司設置內部稽核人員，並實施自行檢查與內部控制聲明。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-2" target="_blank">證交法 §14-2</a></span><strong>獨立董事設置規範：</strong> 公發公司得依主管機關規定設置獨立董事，人數不得少於 <span class="text-important">2 人</span>，且不得少於董事席次 <span class="text-important">五分之一</span>。獨立董事應具備專業知識，持股及兼職應受限制，且不得與公司有直接或間接之利害關係。採候選人提名制。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-3" target="_blank">證交法 §14-3</a></span><strong>獨立董事反對意見處理：</strong> 設有獨立董事之公司，董事會討論法定重大事項（如內控、資產處分、資金貸與、董監經理人薪報酬、財務主管任免等），獨立董事如有反對意見或保留意見，<span class="text-important">應於董事會議事錄載明</span>；獨立董事不能親自出席董事會表達反對或保留意見者，除有正當理由外，應事先出具書面意見，並載明於董事會議事錄，且應於事實發生日起 2 日內即時公告。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-4" target="_blank">證交法 §14-4</a></span><strong>審計委員會設置：</strong> 公發公司應設置審計委員會或監察人。審計委員會應由<span class="text-important">全體獨立董事組成（不得少於 3 人）</span>，其中一人為召集人，且至少一人應具備會計或財務專長。審計委員會成立後，依法替代監察人職權。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-5" target="_blank">證交法 §14-5</a></span><strong>審計委員會同意權利：</strong> 內部控制、資產處分、重大資金貸與或背書保證、募集發行有價證券、財報、經理人及董監事薪酬等議案，應經審計委員會<span class="text-important">全體成員二分之一以上同意</span>，並提董事會決議。未經審計委員會全體成員二分之一以上同意者，得由全體董事三分之二以上同意行之，但財報不在此限。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-6" target="_blank">證交法 §14-6</a></span><strong>薪資報酬委員會：</strong> 股票已上市或在證券商營業處所買賣之公司應設置薪資報酬委員會。成員由董事會任命，獨立評估並訂定董事、監察人及經理人資績評核及薪資報酬政策與架構。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-1" target="_blank">證交法 §14-1</a></span><strong>內部控制制度實施：</strong> 公發公司應建立內部控制制度。主管機管得視公司規模、業務性質及其他必要情況，命令公司設置內部稽核人員，並實施自行檢查與內部控制聲明。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-2" target="_blank">證交法 §14-2</a></span><strong>獨立董事設置規範：</strong> 公發公司得依主管機關規定設置獨立董事，人數不得少於 <span class="text-important">2 人</span>，且不得少於董事席次 <span class="text-important">五分之一</span>。獨立董事應具備專業知識，持股及兼職應受限制，且不得與公司有直接或間接之利害關係。採候選人提名制。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-3" target="_blank">證交法 §14-3</a></span><strong>獨立董事反對意見處理：</strong> 設有獨立董事之公司，董事會討論法定重大事項（如內控、資產處分、資金貸與、董監經理人薪報酬、財務主管任免等），獨立董事如有反對意見或保留意見，<span class="text-important">應於董事會議事錄載明</span>；獨立董事不能親自出席董事會表達反對或保留意見者，除有正當理由外，應事先出具書面意見，並載明於董事會議事錄，且應於事實發生日起 2 日內即時公告。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-4" target="_blank">證交法 §14-4</a></span><strong>審計委員會設置：</strong> 公發公司應設置審計委員會或監察人。審計委員會應由<span class="text-important">全體獨立董事組成（不得少於 3 人）</span>，其中一人為召集人，且至少一人應具備會計或財務專長。審計委員會成立後，依法替代監察人職權。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-5" target="_blank">證交法 §14-5</a></span><strong>審計委員會同意權利：</strong> 內部控制、資產處分、重大資金貸與或背書保證、募集發行有價證券、財報、經理人及董監事薪酬等議案，應經審計委員會<span class="text-important">全體成員二分之一以上同意</span>，並提董事會決議。未經審計委員會全體成員二分之一以上同意者，得由全體董事三分之二以上同意行之，但財報不在此限。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=14-6" target="_blank">證交法 §14-6</a></span><strong>薪資報酬委員會：</strong> 股票已上市或在證券商營業處所買賣之公司應設置薪資報酬委員會。成員由董事會任命，獨立評估並訂定董事、監察人及經理人資績評核及薪資報酬政策與架構。</li>
                     </ul>
 
                     <h3>三、 內部人股權管理與交易管制規範</h3>
                     <ul>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=22-2" target="_blank">證交法 §22-2</a></span><strong>內部人持股轉讓申報：</strong> 公司董事、監察人、經理人或持有公司股份超過 <span class="text-important">10%</span> 之股東，其股票之轉讓應於事前向主管機關申報（經主管機關核准、盤後定價/鉅額交易、或集中市場撮合等方式）。其設質、轉讓股份均包括配偶、未成年子女及利用他人名義持有者。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=25" target="_blank">證交法 §25</a></span><strong>內部人股權異動與質押定期申報：</strong> 內部人應於每月 <span class="text-important">15 日前</span>，向公司申報上月份持股變動、設質及解質情形；公司應於每月 <span class="text-important">15 日前</span>彙總向主管機關申報。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=26" target="_blank">證交法 §26</a></span><strong>全體董監事成數與最低持股成數：</strong> 上市櫃公司全體董事及監察人所持有記名股票之股份總額，不得低於公司已發行股份總額之一定比率（依公司資本額分級設定最低持股成數，選任獨立董事者成數得遞減）。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=28-2" target="_blank">證交法 §28-2</a></span><strong>買回本公司股份（庫藏股）：</strong> 公司為轉讓股份予員工、配合附認股權股份/公司債轉讓、或為維護公司信用及股東權益所必要得經董事會三分之二以上出席及出席董事過半數同意買回本公司股份。買回總額不得超過流動資產及保留盈餘等限制，並應於事實發生日起 2 日內辦理公告。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=43-6" target="_blank">證交法 §43-6</a></span><strong>私募有價證券處置：</strong> 公發公司得經股東會代表已發行股份總數三分之二以上出席，出席股東表決權過半數之決議，私募有價證券。私募對象限銀行/保險/票券/證券等機構法人或符合資格之自然人、法人。私募有價證券自交付日起 <span class="text-important">3 年內</span>自由轉讓受限，滿 3 年後補辦公開發行始得上市櫃交易。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=157" target="_blank">證交法 §157</a></span><strong>短線交易歸入權：</strong> 公司內部人對公司之上市櫃或興櫃股票（或具股權性質之有價證券），於取得後 <span class="text-important">6 個月內</span>再行賣出，或賣出後 <span class="text-important">6 個月內</span>再行買進，因而獲得利益者，公司應請求將其利益歸於公司（歸入權）。董事會或監察人不為公司行使請求權時，股東得請求董事或監察人於 30 日內行使之。</li>
-                        <li><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=157-1" target="_blank">證交法 §157-1</a></span><strong>禁止內線交易：</strong> 內部人、基於職業或控制關係獲悉消息之人，獲悉發行股票公司有重大影響其股票價格或付息能力之消息時，在該消息明確後，未公開前或公開後 <span class="text-important">18 小時內</span>，不得買入或賣出該公司之上市櫃或興櫃股票或具股權性質之有價證券。違反者負刑事責任（3 年以上 10 年以下有期徒刑）及三倍之損害賠償民事責任。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=22-2" target="_blank">證交法 §22-2</a></span><strong>內部人持股轉讓申報：</strong> 公司董事、監察人、經理人或持有公司股份超過 <span class="text-important">10%</span> 之股東，其股票之轉讓應於事前向主管機關申報（經主管機關核准、盤後定價/鉅額交易、或集中市場撮合等方式）。其設質、轉讓股份均包括配偶、未成年子女及利用他人名義持有者。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=25" target="_blank">證交法 §25</a></span><strong>內部人股權異動與質押定期申報：</strong> 內部人應於每月 <span class="text-important">15 日前</span>，向公司申報上月份持股變動、設質及解質情形；公司應於每月 <span class="text-important">15 日前</span>彙總向主管機關申報。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=26" target="_blank">證交法 §26</a></span><strong>全體董監事成數與最低持股成數：</strong> 上市櫃公司全體董事及監察人所持有記名股票之股份總額，不得低於公司已發行股份總額之一定比率（依公司資本額分級設定最低持股成數，選任獨立董事者成數得遞減）。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=28-2" target="_blank">證交法 §28-2</a></span><strong>買回本公司股份（庫藏股）：</strong> 公司為轉讓股份予員工、配合附認股權股份/公司債轉讓、或為維護公司信用及股東權益所必要得經董事會三分之二以上出席及出席董事過半數同意買回本公司股份。買回總額不得超過流動資產及保留盈餘等限制，並應於事實發生日起 2 日內辦理公告。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=43-6" target="_blank">證交法 §43-6</a></span><strong>私募有價證券處置：</strong> 公發公司得經股東會代表已發行股份總數三分之二以上出席，出席股東表決權過半數之決議，私募有價證券。私募對象限銀行/保險/票券/證券等機構法人或符合資格之自然人、法人。私募有價證券自交付日起 <span class="text-important">3 年內</span>自由轉讓受限，滿 3 年後補辦公開發行始得上市櫃交易。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=157" target="_blank">證交法 §157</a></span><strong>短線交易歸入權：</strong> 公司內部人對公司之上市櫃或興櫃股票（或具股權性質之有價證券），於取得後 <span class="text-important">6 個月內</span>再行賣出，或賣出後 <span class="text-important">6 個月內</span>再行買進，因而獲得利益者，公司應請求將其利益歸於公司（歸入權）。董事會或監察人不為公司行使請求權時，股東得請求董事或監察人於 30 日內行使之。</li>
+                        <li class="searchable-item"><span class="badge bg-sec"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=157-1" target="_blank">證交法 §157-1</a></span><strong>禁止內線交易：</strong> 內部人、基於職業或控制關係獲悉消息之人，獲悉發行股票公司有重大影響其股票價格或付息能力之消息時，在該消息明確後，未公開前或公開後 <span class="text-important">18 小時內</span>，不得買入或賣出該公司之上市櫃或興櫃股票或具股權性質之有價證券。違反者負刑事責任（3 年以上 10 年以下有期徒刑）及三倍之損害賠償民事責任。</li>
                     </ul>
                 </div>
             </div>
 
             <!-- 3. 四大處理準則 -->
-            <div id="tab-rules" class="tab-content active">
-                <div class="section-title sec-rules">公開發行公司四大處理準則（金管會授權子法）</div>
+            <div id="tab-rules" class="tab-content active search-section">
+                <div class="section-header sec-rules">
+                    <span>公開發行公司四大處理準則（金管會授權子法）</span>
+                </div>
                 
                 <div class="card">
                     <h3>四大處理準則核心門檻速查表</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="width: 30%;">處理準則名稱</th>
-                                <th style="width: 25%;">重要比例/金額門檻</th>
-                                <th style="width: 25%;">關鍵權責單位</th>
-                                <th style="width: 20%;">定期申報與控制時限</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400058" target="_blank">資金貸與他人處理準則</a></strong>
-                                    <span class="badge bg-rules" style="margin-top: 4px;"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span>
-                                </td>
-                                <td>貸與總額上限 <span class="text-important">淨值 40%</span>（業務往來以交易金額為限）</td>
-                                <td>董事會決議（設審委會者須經審委會同意）</td>
-                                <td>每月 <span class="text-important">10 日前</span> 申報上月餘額</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400058" target="_blank">背書保證處理準則</a></strong>
-                                    <span class="badge bg-rules" style="margin-top: 4px;"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span>
-                                </td>
-                                <td>總額及單一企業限額由公司自訂（達淨值 50% 須評估合理性）</td>
-                                <td>董事會決議（超限時需董事會重行審議並訂改善計畫）</td>
-                                <td>每月 <span class="text-important">10 日前</span> 申報上月餘額</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400069" target="_blank">取得或處分資產處理準則</a></strong>
-                                    <span class="badge bg-rules" style="margin-top: 4px;"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span>
-                                </td>
-                                <td>達總資產 <span class="text-important">20%</span> 或 <span class="text-important">3 億元</span></td>
-                                <td>專業估價機構 / 會計師意見</td>
-                                <td>事實發生日起 <span class="text-important">2 日內</span> 即時公告</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400069" target="_blank">衍生性商品交易處理準則</a></strong>
-                                    <span class="badge bg-rules" style="margin-top: 4px;"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span>
-                                </td>
-                                <td>損失上限：契約/全部損失金額上限；未實現損失達個別契約 <span class="text-important">20%</span> 應陳報</td>
-                                <td>董事會授權管理層 / 專責交易與風控人員權責分立</td>
-                                <td>每月 <span class="text-important">10 日前</span> 申報上月底未交易及交易餘額</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%;">處理準則名稱</th>
+                                    <th style="width: 25%;">重要比例/金額門檻</th>
+                                    <th style="width: 25%;">關鍵權責單位</th>
+                                    <th style="width: 25%;">定期申報與控制時限</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="searchable-item">
+                                    <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400058" target="_blank">資金貸與他人處理準則</a></strong> <span class="badge bg-rules"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">§36-1</a></span></td>
+                                    <td>貸與總額上限 <span class="text-important">淨值 40%</span></td>
+                                    <td>董事會決議（設審委會者須經審委會同意）</td>
+                                    <td>每月 <span class="text-important">10 日前</span> 申報上月餘額</td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400058" target="_blank">背書保證處理準則</a></strong> <span class="badge bg-rules"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">§36-1</a></span></td>
+                                    <td>總額由公司自訂（達淨值 50% 須評估合理性）</td>
+                                    <td>董事會決議（超限需重行審議並訂改善計畫）</td>
+                                    <td>每月 <span class="text-important">10 日前</span> 申報上月餘額</td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400069" target="_blank">取得或處分資產處理準則</a></strong> <span class="badge bg-rules"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">§36-1</a></span></td>
+                                    <td>達總資產 <span class="text-important">20%</span> 或 <span class="text-important">3 億元</span></td>
+                                    <td>專業估價機構 / 會計師意見</td>
+                                    <td>事實發生日起 <span class="text-important">2 日內</span> 即時公告</td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400069" target="_blank">衍生性商品交易處理準則</a></strong> <span class="badge bg-rules"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">§36-1</a></span></td>
+                                    <td>未實現損失達個別契約 <span class="text-important">20%</span> 應陳報</td>
+                                    <td>董事會授權管理層 / 專責交易風控權責分立</td>
+                                    <td>每月 <span class="text-important">10 日前</span> 申報未交易及交易餘額</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <h3>1. 《<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400058" target="_blank">公開發行公司資金貸與他人處理準則</a>》</h3>
                     <div class="highlight-box">
                         <strong>核心目的：</strong> 嚴格管制公司資金外流與任意放貸行為，維持營運資金安全。
                     </div>
                     <ul>
-                        <li><strong>貸與對象與原因限制：</strong> 資金貸與對象限與公司有<span class="text-important">業務往來之公司或行號</span>（貸與金額不得超過雙方業務往來金額），或有<span class="text-important">短期融通資金必要之公司或行號</span>（限與公司直接或間接持股 100% 之母子公司，融通金額設有嚴格比率限制）。</li>
-                        <li><strong>貸與限額規範：</strong> 資金貸與總額不得超過公司淨值之 <span class="text-important">40%</span>；對單一企業資金貸與金額亦需訂定上限規範（通常業務往來者以業務往來金額為限；短期融通者則依公司內部規定辦理）。</li>
-                        <li><strong>決策程序與申報：</strong> 辦理資金貸與應經董事會決議（設有審計委員會者應經審計委員會過半數同意）。每月 <span class="text-important">10 日前</span>應申報上月貸與餘額；若貸與餘額達淨值 <span class="text-important">20%</span> 以上者，應於事實發生日起 <span class="text-important">2 日內</span>辦理即時公告申報。</li>
+                        <li class="searchable-item"><strong>貸與對象與原因限制：</strong> 資金貸與對象限與公司有<span class="text-important">業務往來之公司或行號</span>（貸與金額不得超過雙方業務往來金額），或有<span class="text-important">短期融通資金必要之公司或行號</span>（限與公司直接或間接持股 100% 之母子公司）。</li>
+                        <li class="searchable-item"><strong>貸與限額規範：</strong> 資金貸與總額不得超過公司淨值之 <span class="text-important">40%</span>；對單一企業資金貸與金額亦需訂定上限規範。</li>
+                        <li class="searchable-item"><strong>決策程序與申報：</strong> 辦理資金貸與應經董事會決議（設有審計委員會者應經審計委員會過半數同意）。每月 <span class="text-important">10 日前</span>應申報上月貸與餘額；若貸與餘額達淨值 <span class="text-important">20%</span> 以上者，應於事實發生日起 <span class="text-important">2 日內</span>辦理即時公告申報。</li>
                     </ul>
 
                     <h3>2. 《<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400058" target="_blank">公開發行公司背書保證處理準則</a>》</h3>
@@ -619,9 +775,9 @@
                         <strong>核心目的：</strong> 管制公司為他人提供信用背書及擔保風險，防範連帶債務損害股東權益。
                     </div>
                     <ul>
-                        <li><strong>背書保證對象限制：</strong> 對象嚴格限定於：(1) 有業務往來之公司；(2) 公司直接及間接持有表決權之股份超過 <span class="text-important">50%</span> 之公司；(3) 直接及間接對公司持有表決權之股份超過 <span class="text-important">50%</span> 之母公司。公司間因同業互保或同業建商履約保證者亦需符法定標準。</li>
-                        <li><strong>限額控管與風險管理：</strong> 公司應於內部處理準則中自訂背書保證總額及對單一企業背書保證之限額。背書保證總額達公司淨值 <span class="text-important">50% 以上</span>者，應於財務報告中揭露，並於股東會說明其必要性與合理性。</li>
-                        <li><strong>審查機制與申報：</strong> 背書保證應經董事會決議辦理，亦得授權董事長在一定額度內行使並提報追認。每月 <span class="text-important">10 日前</span>申報上月背書保證餘額；若背書保證餘額達淨值 <span class="text-important">50% 以上</span>者，應於事實發生日起 <span class="text-important">2 日內</span>辦理即時公告申報。</li>
+                        <li class="searchable-item"><strong>背書保證對象限制：</strong> 對象嚴格限定於：(1) 有業務往來之公司；(2) 公司直接及間接持有表決權之股份超過 <span class="text-important">50%</span> 之公司；(3) 直接及間接對公司持有表決權之股份超過 <span class="text-important">50%</span> 之母公司。</li>
+                        <li class="searchable-item"><strong>限額控管與風險管理：</strong> 公司應於內部處理準則中自訂背書保證總額及對單一企業背書保證之限額。背書保證總額達公司淨值 <span class="text-important">50% 以上</span>者，應於財務報告中揭露，並於股東會說明其必要性與合理性。</li>
+                        <li class="searchable-item"><strong>審查機制與申報：</strong> 背書保證應經董事會決議辦理。每月 <span class="text-important">10 日前</span>申報上月背書保證餘額；若背書保證餘額達淨值 <span class="text-important">50% 以上</span>者，應於事實發生日起 <span class="text-important">2 日內</span>辦理即時公告申報。</li>
                     </ul>
 
                     <h3>3. 《<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400069" target="_blank">公開發行公司取得或處分資產處理準則</a>》</h3>
@@ -629,27 +785,29 @@
                         <strong>核心目的：</strong> 加強資產管理、保障投資權益，防範利益輸送與財務掏空行為。
                     </div>
                     <ul>
-                        <li><strong>專業評估與專家意見門檻：</strong> 取得或處分不動產、設備或使用權資產，交易金額達公司總資產 <span class="text-important">20%</span> 或新臺幣 <span class="text-important">3 億元以上</span>者，應取得專業估價者出具之估價報告。取得或處分有價證券交易金額達總資產 <span class="text-important">20%</span> 或新臺幣 <span class="text-important">3 億元以上</span>者，應於事實發生日前洽請會計師就交易價格合理性表示意見。</li>
-                        <li><strong>關係人交易特別程序：</strong> 向關係人取得或處分資產，金額達公司總資產 <span class="text-important">20%</span>、實收資本額 <span class="text-important">10%</span> 或新臺幣 <span class="text-important">3 億元以上</span>者，應將相關決策評估資料提報董事會通過及監察人（審計委員會）承認，始得簽訂交易契約與支付款項。</li>
-                        <li><strong>即時公告申報門檻：</strong> 取得或處分資產、關係人交易、從事衍生性商品交易、或併購分割處分，金額達公司實收資本額 <span class="text-important">20%</span>、總資產 <span class="text-important">10%</span> 或新臺幣 <span class="text-important">3 億元以上</span>者，應於事實發生日起 <span class="text-important">2 日內</span>辦理公告申報。</li>
+                        <li class="searchable-item"><strong>專業評估與專家意見門檻：</strong> 取得或處分不動產、設備或使用權資產，交易金額達公司總資產 <span class="text-important">20%</span> 或新臺幣 <span class="text-important">3 億元以上</span>者，應取得專業估價者出具之估價報告。取得或處分有價證券交易金額達總資產 <span class="text-important">20%</span> 或新臺幣 <span class="text-important">3 億元以上</span>者，應洽請會計師就交易價格合理性表示意見。</li>
+                        <li class="searchable-item"><strong>關係人交易特別程序：</strong> 向關係人取得或處分資產，金額達公司總資產 <span class="text-important">20%</span>、實收資本額 <span class="text-important">10%</span> 或新臺幣 <span class="text-important">3 億元以上</span>者，應將相關決策評估資料提報董事會通過及監察人（審計委員會）承認。</li>
+                        <li class="searchable-item"><strong>即時公告申報門檻：</strong> 取得或處分資產、關係人交易、從事衍生性商品交易，金額達公司實收資本額 <span class="text-important">20%</span>、總資產 <span class="text-important">10%</span> 或新臺幣 <span class="text-important">3 億元以上</span>者，應於事實發生日起 <span class="text-important">2 日內</span>辦理公告申報。</li>
                     </ul>
 
                     <h3>4. 《<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400069" target="_blank">公開發行公司從事衍生性商品交易處理準則</a>》</h3>
                     <div class="highlight-box">
-                        <strong>核心目的：</strong> 防範因衍生性金融商品交易市場高槓桿及價格劇烈波動所引致之重大財務危機與經營風險。
+                        <strong>核心目的：</strong> 防範因衍生性金融商品交易高槓桿及價格劇烈波動所引致之經營風險。
                     </div>
                     <ul>
-                        <li><strong>交易目的劃分與策略：</strong> 應明確劃分「避險性交易」與「以交易為目的（非避險性）」之衍生性商品交易。避險性交易必須具備實體應收應付款項或預期交易所生之風險對沖需求。</li>
-                        <li><strong>風險管理與停損機制：</strong> 處理準則中必須訂定明確之「損失上限」（包含全部契約及個別契約之損失上限金額）。如未實現損失達到個別契約交易金額 <span class="text-important">20%</span> 或總契約交易金額之一定比率時，應立即陳報董事會與高階管理層研擬處置策略。</li>
-                        <li><strong>權責劃分與內部控管：</strong> 交易人員、確認人員及交割人員不得互相兼任。風控人員應定期進行市場評價（避險性交易至少每個月評價一次；非避險交易至少每週評價一次）並呈報授權高階主管。</li>
-                        <li><strong>即時與定期申報：</strong> 每月 <span class="text-important">10 日前</span>應將截至上月底止從事衍生性商品交易之情形輸入 MOPS；若從事非避險性交易產生重大損失，或交易未實現損失達原定停損門檻者，應於事實發生日起 <span class="text-important">2 日內</span>辦理即時公告申報。</li>
+                        <li class="searchable-item"><strong>交易目的劃分與策略：</strong> 應明確劃分「避險性交易」與「以交易為目的（非避險性）」之衍生性商品交易。</li>
+                        <li class="searchable-item"><strong>風險管理與停損機制：</strong> 處理準則中必須訂定明確之「損失上限」。如未實現損失達到個別契約交易金額 <span class="text-important">20%</span> 時，應立即陳報董事會與高階管理層研擬處置策略。</li>
+                        <li class="searchable-item"><strong>權責劃分與內部控管：</strong> 交易人員、確認人員及交割人員不得互相兼任。風控人員應定期進行市場評價呈報授權高階主管。</li>
+                        <li class="searchable-item"><strong>即時與定期申報：</strong> 每月 <span class="text-important">10 日前</span>應將截至上月底止交易情形輸入 MOPS；若從事非避險性交易產生重大損失，應於事實發生日起 <span class="text-important">2 日內</span>辦理即時公告申報。</li>
                     </ul>
                 </div>
             </div>
 
             <!-- 4. 重大訊息處理程序 -->
-            <div id="tab-mops" class="tab-content active">
-                <div class="section-title sec-mops">證交所 / 櫃買中心《<a href="https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?sysNumber=LW10810506&releaseDate=2026-02-05&__RequestVerificationToken=CfDJ8MjYnV5DFwxPuFJv3vIXxhDpVpjPVVFRGkSOcMO79MxyIjmqe-8faN-0E6JLcm-e_yVWPg0FKYuRlHdArdpD-Sde-QamJ5rV1zj99nygEVr-4zPpOpcy-cQsPcld9A1_y1ZZA3J5d36EWfXjYGohfDs" target="_blank" style="color: #ffffff;">重大訊息處理程序</a>》（重訊辦法）</div>
+            <div id="tab-mops" class="tab-content active search-section">
+                <div class="section-header sec-mops">
+                    <span>證交所 / 櫃買中心《<a href="https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?sysNumber=LW10810506&releaseDate=2026-02-05&__RequestVerificationToken=CfDJ8MjYnV5DFwxPuFJv3vIXxhDpVpjPVVFRGkSOcMO79MxyIjmqe-8faN-0E6JLcm-e_yVWPg0FKYuRlHdArdpD-Sde-QamJ5rV1zj99nygEVr-4zPpOpcy-cQsPcld9A1_y1ZZA3J5d36EWfXjYGohfDs" target="_blank" style="color: #ffffff;">重大訊息處理程序</a>》（重訊辦法）</span>
+                </div>
                 <div class="card">
                     <h3>重大訊息申報與澄清時效流程</h3>
                     <div class="flow-container">
@@ -657,17 +815,14 @@
                             <div class="flow-step-title">1. 事實發生</div>
                             <div class="flow-step-desc">決議/媒體報導/災害</div>
                         </div>
-                        <div class="flow-arrow">→</div>
                         <div class="flow-step">
                             <div class="flow-step-title">2. 黃金時效</div>
                             <div class="flow-step-desc"><span class="text-important">次日開盤前 / 24 hrs</span></div>
                         </div>
-                        <div class="flow-arrow">→</div>
                         <div class="flow-step">
                             <div class="flow-step-title">3. MOPS 輸入</div>
                             <div class="flow-step-desc">指定平台完成傳輸</div>
                         </div>
-                        <div class="flow-arrow">→</div>
                         <div class="flow-step">
                             <div class="flow-step-title">4. 必要時記者會</div>
                             <div class="flow-step-desc">重大事項親自召開</div>
@@ -675,88 +830,92 @@
                     </div>
 
                     <h3>一、 時效規範與申報管道</h3>
-                    <p>上市櫃及興櫃公司發生對股價或股東權益有重大影響之事項時，應於事實發生日、媒體報導日、董事會決議日或簽約日<span class="text-important">次日開盤前 2 小時內（或事實發生後 24 小時內）</span>，將重大訊息輸入金管會指定之「公開資訊觀測站（MOPS）」。</p>
+                    <p class="searchable-item">上市櫃及興櫃公司發生對股價或股東權益有重大影響之事項時，應於事實發生日、媒體報導日、董事會決議日或簽約日<span class="text-important">次日開盤前 2 小時內（或事實發生後 24 小時內）</span>，將重大訊息輸入金管會指定之「公開資訊觀測站（MOPS）」。</p>
 
-                    <h3><strong><a href="https://www.selaw.com.tw/Chinese/LawDetail/LawArticleReference?lawDataid=16516426" target="_blank">二、 常見重大訊息應申報事由（證交所作業程序第 4 條全範疇）</a></strong></h3>
+                    <h3>二、 常見重大訊息應申報事由（證交所作業程序第 4 條）</h3>
                     <ul>
-                        <li><strong>公司營運重大變更：</strong> 發生重大災害、停工或複工、退票、聲請重整、破產、清算、解散、或主要客戶/供應商終止業務契約。</li>
-                        <li><strong>財務資產重大異動：</strong> 資金貸與或背書保證超限或異動、取得或處分資產達公告標準、辦理私募或公開增資發行新股、發行公司債或轉換公司債。</li>
-                        <li><strong>公司治理與內部人異動：</strong> 董事長、總經理、獨立董事、內部稽核主管、財務主管、會計主管、研發主管或簽證會計師異動；董監事過半數異動或三分之一獨立董事解任。</li>
-                        <li><strong>股東權益與股利政策：</strong> 董事會決議擬議盈餘分派或虧損撥補、減資、公司併購、分割、股份轉讓/交換、收購或終止上市/上櫃買賣。</li>
-                        <li><strong>司法訴訟與行政處分：</strong> 公司、負責人或大股東涉及重大訴訟、非訟事件、金管會行政處分、假扣押或遭檢調機關進行搜索扣押。</li>
+                        <li class="searchable-item"><strong>公司營運重大變更：</strong> 發生重大災害、停工或複工、退票、聲請重整、破產、清算、解散、或主要客戶/供應商終止業務契約。</li>
+                        <li class="searchable-item"><strong>財務資產重大異動：</strong> 資金貸與或背書保證超限或異動、取得或處分資產達公告標準、辦理私募或公開增資發行新股、發行公司債。</li>
+                        <li class="searchable-item"><strong>公司治理與內部人異動：</strong> 董事長、總經理、獨立董事、內部稽核主管、財務主管、會計主管、研發主管或簽證會計師異動。</li>
+                        <li class="searchable-item"><strong>股東權益與股利政策：</strong> 董事會決議擬議盈餘分派或虧損撥補、減資、公司併購、分割、股份轉讓/交換、收購或終止上市/上櫃買賣。</li>
+                        <li class="searchable-item"><strong>司法訴訟與行政處分：</strong> 公司、負責人或大股東涉及重大訴訟、非訟事件、金管會行政處分、假扣押或遭檢調機關進行搜索扣押。</li>
                     </ul>
 
-                    <h3><strong><a href="https://www.selaw.com.tw/Chinese/LawDetail/LawArticleReference?lawDataid=16516594" target="_blank">三、 重大訊息說明記者會（證交所作業程序第 11 條）</a></strong></h3>
-                    <div class="highlight-box">
+                    <h3>三、 重大訊息說明記者會（證交所作業程序第 11 條）</h3>
+                    <div class="highlight-box searchable-item">
                         <strong>強制召開記者會事由：</strong> 發生嚴重財務危機、重大併購案、董事會決議終止上市櫃、重大部分業務停業、掏空資產或遭檢調扣押等嚴重影響股東權益事項，公司負責人或指定發言人應<span class="text-important">立即至證交所/櫃買中心親自召開記者會說明</span>。
                     </div>
 
                     <h3>四、 媒體報導查證與澄清機制</h3>
-                    <p>媒體報導內容涉及公司預估財務獲利、重大資產變更、併購傳聞或報導內容與事實不符時，公司應於 <span class="text-important">次日開盤前</span> 主動發布重大訊息逐項澄清說明，<span class="text-important">不得以「不予置評」或「未經證實」等理由規避申報責任</span>。</p>
+                    <p class="searchable-item">媒體報導內容涉及公司預估財務獲利、重大資產變更、併購傳聞或報導內容與事實不符時，公司應於 <span class="text-important">次日開盤前</span> 主動發布重大訊息逐項澄清說明，<span class="text-important">不得以「不予置評」或「未經證實」等理由規避申報責任</span>。</p>
 
                     <h3>五、 違反重訊程序之違約金與處置措施</h3>
-                    <p>未依限申報、申報內容虛偽不實、應召開記者會而未召開、或拒不說明者，證交所/櫃買中心得處以新臺幣 <span class="text-important">3 萬元至 500 萬元</span>違約金；情節嚴重者，得將其股票變更交易方法（改列全額交割）或暫停交易。</p>
+                    <p class="searchable-item">未依限申報、申報內容虛偽不實、應召開記者會而未召開、或拒不說明者，證交所/櫃買中心得處以新臺幣 <span class="text-important">3 萬元至 500 萬元</span>違約金；情節嚴重者，得將其股票變更交易方法（改列全額交割）或暫停交易。</p>
                 </div>
             </div>
 
             <!-- 5. 對照總表 -->
-            <div id="tab-table" class="tab-content active">
-                <div class="section-title sec-table">公開發行與上市櫃法規申報與監理對照總表</div>
-                <div class="card" style="padding: 10px;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="width: 20%;">法規 / 準則名稱</th>
-                                <th style="width: 28%;">監理重點區域</th>
-                                <th style="width: 28%;">關鍵數值門檻 / 限制</th>
-                                <th style="width: 24%;">公告申報時限</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001" target="_blank">公司法</a>（公發相關）</strong></td>
-                                <td>股東會召集、董事提名、無實體發行、公積撥充、電子投票</td>
-                                <td>常會<span class="text-important">30日前</span>通知；提案持股<span class="text-important">1%</span>；員工保留<span class="text-important">10%-15%</span>；大股東自行召集<span class="text-important">>50%</span></td>
-                                <td>常會前<span class="text-important">60日</span>、臨時會前<span class="text-important">30日</span>停止過戶</td>
-                            </tr>
-                            <tr>
-                                <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400001" target="_blank">證券交易法</a></strong></td>
-                                <td>獨董/審委會/薪酬、短線/內線交易、庫藏股、財報申報</td>
-                                <td>獨董至少<span class="text-important">2人</span>且不低於<span class="text-important">1/5</span>；內線交易禁止期<span class="text-important">18小時</span>；短線歸入<span class="text-important">6個月</span></td>
-                                <td>年度財報<span class="text-important">3個月內</span>（上市櫃<span class="text-important">75天</span>）；季財報<span class="text-important">45天內</span>；月營收每月<span class="text-important">10日前</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400058" target="_blank">資金貸與他人準則</a></strong><span class="badge bg-table" style="margin-top: 4px;"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span></td>
-                                <td>資金貸與對象（業務往來/短期融通）與金額限制</td>
-                                <td>限制業務往來者或100%子公司；貸與總額&lt;<span class="text-important">淨值40%</span></td>
-                                <td>每月 <span class="text-important">10 日前</span>申報上月餘額；即時達標（貸與淨值20%）<span class="text-important">2日內</span>申報</td>
-                            </tr>
-                            <tr>
-                                <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400058" target="_blank">背書保證處理準則</a></strong><span class="badge bg-table" style="margin-top: 4px;"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span></td>
-                                <td>信用擔保對象、公司內部總額與單一企業限額管制</td>
-                                <td>限制業務往來或持股>50%母子公司；總額達淨值<span class="text-important">50%</span>須特別評估</td>
-                                <td>每月 <span class="text-important">10 日前</span>申報上月餘額；即時達標（背書淨值50%）<span class="text-important">2日內</span>申報</td>
-                            </tr>
-                            <tr>
-                                <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400069" target="_blank">取得處分資產準則</a></strong><span class="badge bg-table" style="margin-top: 4px;"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span></td>
-                                <td>不動產、有價證券、併購、關係人交易</td>
-                                <td>資產<span class="text-important">20%</span>或<span class="text-important">3億元</span>須專業估價/會計師意見；關係人交易資本額<span class="text-important">10%</span>或<span class="text-important">3億元</span></td>
-                                <td>事實發生日起 <span class="text-important">2 日內</span>辦理即時申報</td>
-                            </tr>
-                            <tr>
-                                <td><strong><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0400069" target="_blank">衍生性商品交易準則</a></strong><span class="badge bg-table" style="margin-top: 4px;"><a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=G0400001&flno=36-1" target="_blank">證交法 §36-1</a></span></td>
-                                <td>避險/非避險分類、損失上限、風控評價與權責分立</td>
-                                <td>停損門檻（如個別未實現損失達<span class="text-important">20%</span>呈報）；評價頻率管制</td>
-                                <td>每月 <span class="text-important">10 日前</span>申報上月交易情形；產生重大損失或超限 <span class="text-important">2日內</span>申報</td>
-                            </tr>
-                            <tr>
-                                <td><strong><a href="https://www.selaw.com.tw/Chinese/RegulatoryInformationResult/Article?sysNumber=LW10810506&releaseDate=2026-02-05&__RequestVerificationToken=CfDJ8MjYnV5DFwxPuFJv3vIXxhDpVpjPVVFRGkSOcMO79MxyIjmqe-8faN-0E6JLcm-e_yVWPg0FKYuRlHdArdpD-Sde-QamJ5rV1zj99nygEVr-4zPpOpcy-cQsPcld9A1_y1ZZA3J5d36EWfXjYGohfDs" target="_blank">重大訊息處理程序</a></strong></td>
-                                <td>營運、財務、董監高異動、重訊記者會、媒體澄清與違規處罰</td>
-                                <td>退票、併購、重要高階人員異動、違規罰<span class="text-important">3萬-500萬元</span></td>
-                                <td>事實發生<span class="text-important">次日開盤前2小時內（或24小時內</span>）即時申報；媒體報導次日開盤前澄清</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div id="tab-table" class="tab-content active search-section">
+                <div class="section-header sec-table">
+                    <span>公開發行與上市櫃法規申報與監理對照總表</span>
+                </div>
+                <div class="card" style="padding: 12px;">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">法規 / 準則名稱</th>
+                                    <th style="width: 28%;">監理重點區域</th>
+                                    <th style="width: 28%;">關鍵數值門檻 / 限制</th>
+                                    <th style="width: 24%;">公告申報時限</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="searchable-item">
+                                    <td><strong>公司法（公發相關）</strong></td>
+                                    <td>股東會召集、董事提名、無實體發行、公積撥充、電子投票</td>
+                                    <td>常會<span class="text-important">30日前</span>；提案持股<span class="text-important">1%</span>；員工保留<span class="text-important">10%-15%</span>；大股東召集<span class="text-important">>50%</span></td>
+                                    <td>常會前<span class="text-important">60日</span>、臨時會前<span class="text-important">30日</span>停止過戶</td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong>證券交易法</strong></td>
+                                    <td>獨董/審委會/薪酬、短線/內線交易、庫藏股、財報申報</td>
+                                    <td>獨董至少<span class="text-important">2人</span>且不低於<span class="text-important">1/5</span>；內線禁止期<span class="text-important">18小時</span>；短線歸入<span class="text-important">6個月</span></td>
+                                    <td>年度財報<span class="text-important">3個月內</span>（上市櫃<span class="text-important">75天</span>）；季財報<span class="text-important">45天內</span>；月營收<span class="text-important">10日前</span></td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong>資金貸與他人準則</strong></td>
+                                    <td>資金貸與對象（業務往來/短期融通）與金額限制</td>
+                                    <td>限制業務往來者或100%子公司；貸與總額&lt;<span class="text-important">淨值40%</span></td>
+                                    <td>每月 <span class="text-important">10 日前</span>申報；即時達標（淨值20%）<span class="text-important">2日內</span>申報</td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong>背書保證處理準則</strong></td>
+                                    <td>信用擔保對象、公司內部總額與單一企業限額管制</td>
+                                    <td>限制業務往來或持股>50%母子公司；總額達淨值<span class="text-important">50%</span>特別評估</td>
+                                    <td>每月 <span class="text-important">10 日前</span>申報；即時達標（淨值50%）<span class="text-important">2日內</span>申報</td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong>取得處分資產準則</strong></td>
+                                    <td>不動產、有價證券、併購、關係人交易</td>
+                                    <td>資產<span class="text-important">20%</span>或<span class="text-important">3億元</span>須專業估價；關係人交易資本額<span class="text-important">10%</span>或<span class="text-important">3億元</span></td>
+                                    <td>事實發生日起 <span class="text-important">2 日內</span>辦理即時申報</td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong>衍生性商品交易準則</strong></td>
+                                    <td>避險/非避險分類、損失上限、風控評價與權責分立</td>
+                                    <td>停損門檻（如個別未實現損失達<span class="text-important">20%</span>呈報）；評價頻率管制</td>
+                                    <td>每月 <span class="text-important">10 日前</span>申報；產生重大損失 <span class="text-important">2日內</span>申報</td>
+                                </tr>
+                                <tr class="searchable-item">
+                                    <td><strong>重大訊息處理程序</strong></td>
+                                    <td>營運、財務、董監高異動、重訊記者會、媒體澄清與處罰</td>
+                                    <td>退票、併購、重要高階人員異動、違規罰<span class="text-important">3萬-500萬元</span></td>
+                                    <td>事實發生<span class="text-important">次日開盤前2小時內（或24小時內）</span>即時申報</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -768,37 +927,132 @@
 
     </div>
 
-    <!-- 回到頂端浮動按鈕 -->
+    <!-- 回到頂端按鈕 -->
     <button id="backToTopBtn" class="back-to-top" onclick="scrollToTop()" title="回到頂端" aria-label="回到頂端">
-        <svg viewBox="0 0 24 24">
-            <path d="M12 4l-8 8h5v8h6v-8h5z"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
     </button>
 
-    <!-- JavaScript 邏輯 (分頁切換 + 回到頂端偵測) -->
+    <!-- JavaScript：頁籤切換、即時搜尋過濾、高亮與 UI 邏輯 -->
     <script>
-        // 分頁切換邏輯
-        function switchTab(tabId) {
+        let currentTab = 'tab-all';
+
+        // 頁籤切換邏輯
+        function switchTab(tabId, e) {
+            currentTab = tabId;
             const buttons = document.querySelectorAll('.tab-btn');
             const contents = document.querySelectorAll('.tab-content');
 
             buttons.forEach(btn => btn.classList.remove('active'));
             
+            if (e) {
+                e.currentTarget.classList.add('active');
+            } else {
+                const targetBtn = Array.from(buttons).find(b => b.getAttribute('data-target') === tabId);
+                if (targetBtn) targetBtn.classList.add('active');
+            }
+
             if (tabId === 'tab-all') {
                 contents.forEach(content => content.classList.add('active'));
-                event.currentTarget.classList.add('active');
             } else {
                 contents.forEach(content => content.classList.remove('active'));
-                document.getElementById(tabId).classList.add('active');
-                event.currentTarget.classList.add('active');
+                const activeContent = document.getElementById(tabId);
+                if (activeContent) activeContent.classList.add('active');
+            }
+
+            handleSearch();
+        }
+
+        // 實時搜尋過濾與高亮控制
+        function handleSearch() {
+            const input = document.getElementById('searchInput');
+            const query = input.value.trim();
+            const lowerQuery = query.toLowerCase();
+            const clearBtn = document.getElementById('clearSearchBtn');
+            const countDisplay = document.getElementById('searchResultCount');
+            const noResults = document.getElementById('noResults');
+            const queryText = document.getElementById('searchQueryText');
+
+            clearBtn.style.display = query !== '' ? 'block' : 'none';
+
+            const items = document.querySelectorAll('.searchable-item');
+            let matchCount = 0;
+
+            items.forEach(item => {
+                // 清除舊高亮標記
+                removeHighlights(item);
+
+                const parentSection = item.closest('.search-section');
+                const isTabVisible = (currentTab === 'tab-all') || (parentSection && parentSection.id === currentTab);
+
+                if (query === '') {
+                    item.style.display = '';
+                } else {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(lowerQuery) && isTabVisible) {
+                        item.style.display = '';
+                        matchCount++;
+                        highlightNode(item, query);
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+
+            if (query !== '') {
+                countDisplay.textContent = `找到 ${matchCount} 筆相關規範`;
+                if (matchCount === 0) {
+                    noResults.style.display = 'block';
+                    queryText.textContent = query;
+                } else {
+                    noResults.style.display = 'none';
+                }
+            } else {
+                countDisplay.textContent = '';
+                noResults.style.display = 'none';
             }
         }
 
-        // 回到頂端按鈕邏輯
-        const backToTopBtn = document.getElementById('backToTopBtn');
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            input.value = '';
+            handleSearch();
+            input.focus();
+        }
 
+        function highlightNode(node, query) {
+            if (!query) return;
+            const re = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+
+            node.childNodes.forEach(child => {
+                if (child.nodeType === 3) { // Text Node
+                    const val = child.nodeValue;
+                    if (re.test(val)) {
+                        const tempSpan = document.createElement('span');
+                        tempSpan.innerHTML = val.replace(re, '<mark class="search-highlight">$1</mark>');
+                        node.replaceChild(tempSpan, child);
+                    }
+                } else if (child.nodeType === 1 && child.tagName !== 'MARK' && child.tagName !== 'A' && child.tagName !== 'SCRIPT') {
+                    highlightNode(child, query);
+                }
+            });
+        }
+
+        function removeHighlights(element) {
+            const marks = element.querySelectorAll('mark.search-highlight');
+            marks.forEach(mark => {
+                const parent = mark.parentNode;
+                parent.replaceChild(document.createTextNode(mark.textContent), mark);
+                parent.normalize();
+            });
+        }
+
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        const backToTopBtn = document.getElementById('backToTopBtn');
         window.onscroll = function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            if (document.body.scrollTop > 280 || document.documentElement.scrollTop > 280) {
                 backToTopBtn.classList.add('show');
             } else {
                 backToTopBtn.classList.remove('show');
